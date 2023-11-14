@@ -1,17 +1,18 @@
-version: 2.1
+stages:
+  - build
 
-jobs:
-  build:
-    script:
-      - echo "Hello, World!"
+build:
+  stage: build
+  script:
+    - echo "Hello, World!"
 
-      # Install Docker in the image
-      - apt-get update -qy
-      - apt-get install -y docker.io
+    # Install Docker in the image
+    - apt-get update -qy
+    - apt-get install -y docker.io
 
-      # Build Docker image
-      - docker build -t charanl/my-python-app:latest .
+    # Build Docker image
+    - docker build -t charanl/my-python-app:latest .
 
-      # Run tests
-      - pip install -r requirements.txt
-      - pytest -v test_sparse_recommender.py
+    # Run tests
+    - pip install -r requirements.txt
+    - pytest -v test_sparse_recommender.py
