@@ -17,9 +17,4 @@ jobs:
           name: Run tests
           command: |
              pytest -v test_sparse_recommender.py
-      - run:
-          name: Debug Info
-          command: |
-              pwd
-              ls -R
-              pytest -v test_sparse_recommender.py
+
