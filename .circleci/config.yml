@@ -17,11 +17,6 @@ jobs:
       - run:
           name: Run tests
           command: |
-<<<<<<< HEAD:.circleci/config.yml
-            pytest test_sparse_recommender.py
-
-#saa
-=======
              pytest -v test_sparse_recommender.py
       - run:
           name: Debug Info
@@ -29,4 +24,3 @@ jobs:
               pwd
               ls -R
               pytest -v test_sparse_recommender.py
->>>>>>> e2f40c0d9a5873e5c0d2c8b75076e4da0a62b362:circleci/config.yml
