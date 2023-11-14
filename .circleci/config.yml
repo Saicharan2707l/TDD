@@ -2,19 +2,16 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-      - image: python:3.8
-    steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
-      - run:
-          name: Install Dependencies
-          command: pip install -r requirements.txt
-#saa      
-      - run:
-          name: Run tests
-          command: |
-             pytest -v test_sparse_recommender.py
+    script:
+      - echo "Hello, World!"
 
+      # Install Docker in the image
+      - apt-get update -qy
+      - apt-get install -y docker.io
+
+      # Build Docker image
+      - docker build -t charanl/my-python-app:latest .
+
+      # Run tests
+      - pip install -r requirements.txt
+      - pytest -v test_sparse_recommender.py
