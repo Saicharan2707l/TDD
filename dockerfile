@@ -4,6 +4,5 @@ FROM python:3.8-slim
 WORKDIR /usr/src/app
 # Copy
 COPY . .
-RUN pip install --no-cache-dir -r requirements.txt
 # run
 CMD [ "pytest", "./test_sparse_recommender.py" ]
