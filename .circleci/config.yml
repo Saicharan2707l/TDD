@@ -13,7 +13,7 @@ jobs:
           command: pip install -r requirements.txt
       - run:
           name: Run tests
-          command: pytest test.py
+          command: pytest test_sparse_recommender.py
       - run:
           name: Docker build
           command: docker build -t $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1} .
