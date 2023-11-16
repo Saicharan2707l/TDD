@@ -15,6 +15,9 @@ jobs:
           name: Run tests
           command: pytest test_sparse_recommender.py  # Run tests using pytest
       - run:
+          name: Update Pip
+          command: pip install --upgrade pip
+      - run:
           name: Docker build
           command: docker build -t $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1} .  # Build a Docker image with a tag based on the commit SHA1
       - run:
