@@ -3,32 +3,32 @@ version: 2.1
 jobs:
   build_and_push:
     docker:
-      - image: cimg/python:3.8
+      - image: cimg/python:3.8  # Using a Python 3.8 Docker image
     steps:
-      - checkout
+      - checkout  # Check out the source code
       - setup_remote_docker:
-          version: 19.03.13
+          version: 19.03.13  # Setting a remote Docker environment.
       - run:
           name: Install Dependencies
-          command: pip install -r requirements.txt
+          command: pip install -r requirements.txt  # Installing the dependencies through the requirements text.
       - run:
           name: Run tests
-          command: pytest test_sparse_recommender.py
+          command: pytest test_sparse_recommender.py  # Run tests using pytest
       - run:
           name: Docker build
-          command: docker build -t $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1} .
+          command: docker build -t $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1} .  # Build a Docker image with a tag based on the commit SHA1
       - run:
           name: Authenticate with Docker Hub
-          command: echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USERNAME --password-stdin
+          command: echo "$DOCKERHUB_PASS" | docker login --username $DOCKERHUB_USERNAME --password-stdin  # Logging in to Docker Hub
       - run:
           name: Push Docker Image to Docker Hub
-          command: docker push $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1}
+          command: docker push $DOCKERHUB_USERNAME/myapp:${CIRCLE_SHA1}  # Push the Docker image to Docker Hub
 
 workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build_and_push:
+      - build_and_push:  # Include the 'build_and_push' job in the workflow.
           filters:
             branches:
-              only: main
+              only: main  # Run the job only for the 'main' branch.
